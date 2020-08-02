@@ -12,7 +12,7 @@ NIL_THREAD(ThreadMonitoring, arg) {
   while (true) {
 #ifdef MONITORING_LED
     digitalWrite(MONITORING_LED, HIGH);
-    nilThdSleepMilliseconds(100);
+    nilThdSleepMilliseconds(500);
     digitalWrite(MONITORING_LED, LOW);
     nilThdSleepMilliseconds(100);
 #endif

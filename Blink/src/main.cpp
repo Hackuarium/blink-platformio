@@ -1,6 +1,6 @@
 #include <Arduino.h>
-#include <NilRTOS.h>
 #include <config.h>
+#include <hack.h>
 
 void setup() {
   nilSysBegin();

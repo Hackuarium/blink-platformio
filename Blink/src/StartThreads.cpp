@@ -2,7 +2,10 @@
 #include <avr/wdt.h>
 #include <config.h>
 
+#include <Serial.cpp>
+
 #include "Monitoring.cpp"
+#include "SerialSpecific.cpp"
 
 /****************************************************************
                 NilRTOS Multithreading Table
@@ -18,6 +21,14 @@ NIL_THREADS_TABLE_ENTRY(NULL,
                         NULL,
                         waThreadMonitoring,
                         sizeof(waThreadMonitoring))
+#endif
+
+#ifdef THR_SERIAL
+NIL_THREADS_TABLE_ENTRY(NULL,
+                        ThreadSerial,
+                        NULL,
+                        waThreadSerial,
+                        sizeof(waThreadSerial))
 #endif
 
 NIL_THREADS_TABLE_END()

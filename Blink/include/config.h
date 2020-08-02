@@ -1,3 +1,7 @@
 #define MONITORING_LED 13
 
+#define MAX_PARAM 52
+#define PARAM_ERROR 24
+
 #define THR_MONITORING 1
+#define THR_SERIAL 1
