@@ -1,0 +1,3 @@
+#define MONITORING_LED 13
+
+#define THR_MONITORING 1
