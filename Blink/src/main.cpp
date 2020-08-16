@@ -1,8 +1,14 @@
 #include <Arduino.h>
-#include <config.h>
-#include <hack.h>
+//#include <hack.h>
+#include <NilRTOS.h>
+
+#include "config.h"
+//#include "Monitoring.h"
+//#include "StartThreads.h"
+//#include "Serial.h"
 
 void setup() {
+  // put your setup code here, to run once:
   nilSysBegin();
 }
 

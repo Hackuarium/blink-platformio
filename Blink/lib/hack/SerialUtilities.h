@@ -1,4 +1,9 @@
 #include <Arduino.h>
+#include <NilRTOS.h>
+
+
+#include "eeprom.h"
+#include "params.h"
 
 void resetParameters();
 

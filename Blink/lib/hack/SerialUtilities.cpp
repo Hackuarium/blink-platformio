@@ -1,4 +1,3 @@
-
 #include <Arduino.h>
 #include <NilRTOS.h>
 
@@ -9,7 +8,7 @@
 // https://github.com/Hackuarium/simple-spectro/tree/master/arduino/SimpleSpectro.
 // Allows serial monitoring communication.
 
-void resetParameters();
+void resetParameters() {}
 
 void printUtilitiesHelp(Print* output) {
   output->println(F("(uc) Compact settings"));

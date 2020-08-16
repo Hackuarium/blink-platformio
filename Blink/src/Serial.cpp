@@ -1,7 +1,10 @@
+#include <Arduino.h>
 #include <NilRTOS.h>
+#include "config.h"
+//#include "Serial.h"
 
-#include "SerialUtilities.h"
-#include "params.h"
+//#include "SerialUtilities.h"
+//#include "params.h"
 
 // code taken from
 // https://github.com/Hackuarium/simple-spectro/tree/master/arduino/SimpleSpectro.
@@ -11,8 +14,10 @@
 
 #define SERIAL_BUFFER_LENGTH 32
 #define SERIAL_MAX_PARAM_VALUE_LENGTH 32
+
 char serialBuffer[SERIAL_BUFFER_LENGTH];
 uint8_t serialBufferPosition = 0;
+
 
 /*
   SerialEvent occurs whenever a new data comes in the
@@ -39,6 +44,25 @@ uint8_t serialBufferPosition = 0;
   h : help
   l : show the log file
 */
+
+void printHelp(Print* output) {
+  output->println(F("(h)elp"));
+#ifdef THR_WIRE_MASTER
+  output->println(F("(i)2c"));
+#endif
+#ifdef THR_EEPROM_LOGGER
+  output->println(F("(l)og"));
+#endif
+  output->println(F("(s)ettings"));
+
+  output->println(F("(u)tilities"));
+// Check this
+//  printSpecificHelp(output);
+}
+
+void noThread(Print* output) {
+  output->println(F("No Thread"));
+}
 
 void printResult(char* data, Print* output) {
   bool theEnd = false;
@@ -94,7 +118,8 @@ void printResult(char* data, Print* output) {
                                  atoi(paramValue));
 #endif
           } else {
-            setAndSaveParameter(paramCurrent - 1, atoi(paramValue));
+            // Check this (params.h)
+            //setAndSaveParameter(paramCurrent - 1, atoi(paramValue));
           }
         }
         if (wireTargetAddress > 0) {
@@ -103,7 +128,8 @@ void printResult(char* data, Print* output) {
               wireReadIntRegister(wireTargetAddress, paramCurrent - 1));
 #endif
         } else {
-          output->println(parameters[paramCurrent - 1]);
+          // Check this (params.h)
+          //output->println(parameters[paramCurrent - 1]);
         }
         if (paramCurrent <= MAX_PARAM) {
           paramCurrent++;
@@ -122,8 +148,7 @@ void printResult(char* data, Print* output) {
   // we will process the commands, it means it starts with lowercase
   switch (data[0]) {
     case 'h':
-      // Check this
-      //printHelp(output);
+      printHelp(output);
       break;
 #ifdef THR_WIRE_MASTER
     case 'i':
@@ -136,10 +161,12 @@ void printResult(char* data, Print* output) {
       break;
 #endif
     case 's':
-      printParameters(output);
+      // Check this (params.h)
+      //printParameters(output);
       break;
     case 'u':
-      processUtilitiesCommand(data[1], paramValue, output);
+      // Check this (params.h)
+      //processUtilitiesCommand(data[1], paramValue, output);
       break;
     default:
     // Check this
@@ -149,23 +176,33 @@ void printResult(char* data, Print* output) {
   output->println("");
 }
 
-void printHelp(Print* output) {
-  output->println(F("(h)elp"));
-#ifdef THR_WIRE_MASTER
-  output->println(F("(i)2c"));
-#endif
-#ifdef THR_EEPROM_LOGGER
-  output->println(F("(l)og"));
-#endif
-  output->println(F("(s)ettings"));
+//NIL_WORKING_AREA(waThreadSerial, 96);  // minimum 96
+NIL_THREAD(ThreadSerial, arg) {
+  Serial.begin(9600);
+  while (true) {
+    while (Serial.available()) {
+      // get the new byte:
+      char inChar = (char)Serial.read();
 
-  output->println(F("(u)tilities"));
-// Check this
-//  printSpecificHelp(output);
-}
-
-void noThread(Print* output) {
-  output->println(F("No Thread"));
+      if (inChar == 13 || inChar == 10) {
+        // this is a carriage return;
+        if (serialBufferPosition > 0) {
+          printResult(serialBuffer, &Serial);
+        }
+        serialBufferPosition = 0;
+        serialBuffer[0] = '\0';
+      } else {
+        if (serialBufferPosition < SERIAL_BUFFER_LENGTH) {
+          serialBuffer[serialBufferPosition] = inChar;
+          serialBufferPosition++;
+          if (serialBufferPosition < SERIAL_BUFFER_LENGTH) {
+            serialBuffer[serialBufferPosition] = '\0';
+          }
+        }
+      }
+    }
+    nilThdSleepMilliseconds(1);
+  }
 }
 
 #endif

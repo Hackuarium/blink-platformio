@@ -1,12 +1,11 @@
-#include <Arduino.h>
 #include <NilRTOS.h>
 #include "config.h"
-#include "Monitoring.h"
-#include "Serial.h"
+//#include "Monitoring.h"
+//#include "Serial.h"
 
 //#include <Serial.cpp>
 
-//#include <Monitoring.cpp>
+//#include <Monitoring.h>
 //#include <SerialSpecific.h>
 
 /****************************************************************
