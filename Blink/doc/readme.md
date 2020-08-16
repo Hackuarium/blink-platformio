@@ -96,3 +96,13 @@ platformio lib install 44
 #include <Time.h>
 #include "../time/Time.h"
 ```
+
+5. **Monitoring.h** contain declaration for _NIL_WORKING_AREA_ and _NIL_THREAD_ statements.
+
+6. **Serial.h** contain functions declarations.
+
+7. **Monitoring.cpp** contain _NIL_WORKING_AREA_ and _NIL_THREAD_ definitions for Monitoring thread.
+
+8. **Serial.cpp** contain functions, _NIL_WORKING_AREA_ and _NIL_THREAD_ definitions for Serial thread.
+
+9. **StartThreads.cpp** contain NilRTOS Multithreading Table and includes all the headers.
