@@ -39,7 +39,7 @@ void getStatusEEPROM(Print* output) {
     }
 
     // read current byte from eeprom
-    b = eeprom_read_byte(i);
+    b = eeprom_read_byte((const uint8_t *)i);
     sprintf(buf, "%02X ", b);
     j++;
     if (j == bytesPerRow) {
