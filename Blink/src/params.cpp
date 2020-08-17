@@ -1,34 +1,19 @@
 #include <Arduino.h>
-//#include <Time.h>
-#include "../time/Time.h"
-#include <avr/eeprom.h>
+// Arduino.h can be changing by:
+//#include <inttypes.h>
+//#ifndef __AVR__
+//#include <sys/types.h> // for __time_t_defined, but avr libc lacks sys/types.h
+//#endif
+#include "config.h"
 
-#include "../../include/config.h"
 #include "toHex.h"
+#include <Time.h>
 
-#define INT_MAX_VALUE 32767
-#define INT_MIN_VALUE -32768
-#define LONG_MAX_VALUE 2147483647
+#include "params.h"
+#include "eeprom.h" // getQualifier()
 
-// value that should not be taken into account
-// in case of error the parameter is set to this value
-#define ERROR_VALUE -32768
-
-#define EE_START_PARAM 0  // We save the parameter from byte 0 of EEPROM
-#define EE_LAST_PARAM \
-  (MAX_PARAM * 2 - 1)  // The last parameter is stored at byte 50-51
-
-#define EE_QUALIFIER (MAX_PARAM * 2)
-
-#define EEPROM_MIN_ADDR 0
-#define EEPROM_MAX_ADDR 1023
 
 int parameters[MAX_PARAM];
-
-uint16_t getQualifier();
-boolean setParameterBit(byte number, byte bitToSet);
-boolean clearParameterBit(byte number, byte bitToClear);
-void writeLog(uint16_t event_number, int parameter_value);
 
 boolean getParameterBit(byte number, byte bitToRead) {
   return (parameters[number] >> bitToRead) & 1;

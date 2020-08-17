@@ -2,7 +2,7 @@
 
 /* Functions to convert a number to hexadeciaml */
 
-const char hex[] = "0123456789ABCDEF";
+//const char hex[] = "0123456789ABCDEF";
 
 uint8_t toHex(Print* output, byte value);
 

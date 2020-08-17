@@ -1,8 +1,6 @@
-#include <Arduino.h>
 #include <NilRTOS.h>
 #include <avr/wdt.h>
 #include "config.h"
-//#include "Monitoring.h"
 
 #ifdef THR_MONITORING
 

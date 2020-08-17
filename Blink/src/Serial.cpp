@@ -1,16 +1,12 @@
-#include <Arduino.h>
 #include <NilRTOS.h>
 #include "config.h"
-//#include "Serial.h"
 
-//#include "SerialUtilities.h"
-//#include "params.h"
+#include "SerialUtilities.h"
+#include "params.h"
 
 // code taken from
 // https://github.com/Hackuarium/simple-spectro/tree/master/arduino/SimpleSpectro.
-// Thread allowing serail over usb communication.
-
-#ifdef THR_SERIAL
+// Thread allowing serial over usb communication.
 
 #define SERIAL_BUFFER_LENGTH 32
 #define SERIAL_MAX_PARAM_VALUE_LENGTH 32
@@ -44,6 +40,7 @@ uint8_t serialBufferPosition = 0;
   h : help
   l : show the log file
 */
+void printSpecificHelp(Print* output) { }
 
 void printHelp(Print* output) {
   output->println(F("(h)elp"));
@@ -56,8 +53,7 @@ void printHelp(Print* output) {
   output->println(F("(s)ettings"));
 
   output->println(F("(u)tilities"));
-// Check this
-//  printSpecificHelp(output);
+  printSpecificHelp(output);
 }
 
 void noThread(Print* output) {
@@ -162,11 +158,11 @@ void printResult(char* data, Print* output) {
 #endif
     case 's':
       // Check this (params.h)
-      //printParameters(output);
+      printParameters(output);
       break;
     case 'u':
-      // Check this (params.h)
-      //processUtilitiesCommand(data[1], paramValue, output);
+      // Check this (SerialUtilities.h)
+      processUtilitiesCommand(data[1], paramValue, output);
       break;
     default:
     // Check this
@@ -175,6 +171,8 @@ void printResult(char* data, Print* output) {
   }
   output->println("");
 }
+
+#ifdef THR_SERIAL
 
 //NIL_WORKING_AREA(waThreadSerial, 96);  // minimum 96
 NIL_THREAD(ThreadSerial, arg) {

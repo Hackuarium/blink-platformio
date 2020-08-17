@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <NilRTOS.h>
+#include <Time.h>
 
 #include "eeprom.h"
 #include "params.h"
