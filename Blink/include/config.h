@@ -5,3 +5,6 @@
 
 #define THR_MONITORING 1
 #define THR_SERIAL 1
+
+// 08/21/2020
+#define THR_I2C 1

@@ -1,6 +1,7 @@
 #include "config.h"
 #include "Monitoring.h"
 #include "Serial.h"
+#include "I2C.h"
 
 //#include "hack/Serial.h"
 
@@ -28,6 +29,14 @@ NIL_THREADS_TABLE_ENTRY(NULL,
                         NULL,
                         waThreadSerial,
                         sizeof(waThreadSerial))
+#endif
+
+#ifdef THR_I2C
+NIL_THREADS_TABLE_ENTRY(NULL,
+                        ThreadI2C,
+                        NULL,
+                        waThreadI2C,
+                        sizeof(waThreadI2C))
 #endif
 
 NIL_THREADS_TABLE_END()
