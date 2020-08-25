@@ -8,3 +8,6 @@
 
 // 08/21/2020
 #define THR_I2C 1
+
+// 08/24/2020
+#define THR_WIRE_MASTER 1

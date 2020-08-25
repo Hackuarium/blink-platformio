@@ -1,9 +1,7 @@
 #include <Arduino.h>
+#include "config.h"
 //#include <hack.h>
 #include <NilRTOS.h>
-
-
-#include "config.h"
 
 void setup() {
   // put your setup code here, to run once:

@@ -4,6 +4,9 @@
 #include "SerialUtilities.h"
 #include "params.h"
 
+// 08/24/2020
+//#include "WireMaster.h"
+
 // code taken from
 // https://github.com/Hackuarium/simple-spectro/tree/master/arduino/SimpleSpectro.
 // Thread allowing serial over usb communication.
@@ -44,9 +47,12 @@ void printSpecificHelp(Print* output) { }
 
 void printHelp(Print* output) {
   output->println(F("(h)elp"));
+  // 08/24/2020
+  /*
 #ifdef THR_WIRE_MASTER
   output->println(F("(i)2c"));
 #endif
+*/
 #ifdef THR_EEPROM_LOGGER
   output->println(F("(l)og"));
 #endif
@@ -109,20 +115,26 @@ void printResult(char* data, Print* output) {
       if (paramCurrent > 0) {
         if (paramValuePosition > 0) {
           if (wireTargetAddress > 0) {
+            // 08/24/2020
+            /*
 #ifdef THR_WIRE_MASTER
             wireWriteIntRegister(wireTargetAddress, paramCurrent - 1,
                                  atoi(paramValue));
 #endif
+*/
           } else {
             // Check this (params.h)
             //setAndSaveParameter(paramCurrent - 1, atoi(paramValue));
           }
         }
         if (wireTargetAddress > 0) {
+          // 08/24/2020
+          /*
 #ifdef THR_WIRE_MASTER
           output->println(
               wireReadIntRegister(wireTargetAddress, paramCurrent - 1));
 #endif
+*/
         } else {
           // Check this (params.h)
           //output->println(parameters[paramCurrent - 1]);
@@ -146,11 +158,14 @@ void printResult(char* data, Print* output) {
     case 'h':
       printHelp(output);
       break;
+      // 08/24/2020
+      /*
 #ifdef THR_WIRE_MASTER
     case 'i':
       processWireCommand(data[1], paramValue, output);
       break;
 #endif
+*/
 #ifdef THR_EEPROM_LOGGER
     case 'l':
       processLoggerCommand(data[1], paramValue, output);

@@ -1,8 +1,8 @@
 #include "config.h"
 #include "Monitoring.h"
 #include "Serial.h"
-#include "I2C.h"
-
+//#include "I2C.h"
+#include "WireMaster.h"
 //#include "hack/Serial.h"
 
 //#include <SerialSpecific.h>
@@ -31,12 +31,21 @@ NIL_THREADS_TABLE_ENTRY(NULL,
                         sizeof(waThreadSerial))
 #endif
 
-#ifdef THR_I2C
+/*#ifdef THR_I2C
 NIL_THREADS_TABLE_ENTRY(NULL,
                         ThreadI2C,
                         NULL,
                         waThreadI2C,
                         sizeof(waThreadI2C))
+#endif
+*/
+
+#ifdef THR_WIRE_MASTER 
+NIL_THREADS_TABLE_ENTRY(NULL,
+                        ThreadWireMaster,
+                        NULL,
+                        waThreadWireMaster,
+                        sizeof(waThreadWireMaster))
 #endif
 
 NIL_THREADS_TABLE_END()

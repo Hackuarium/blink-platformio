@@ -23,6 +23,8 @@
 #define EEPROM_MIN_ADDR 0
 #define EEPROM_MAX_ADDR 1023
 
+extern int parameters[MAX_PARAM];
+
 boolean setParameterBit(byte number, byte bitToSet);
 boolean getParameterBit(byte number, byte bitToRead);
 boolean clearParameterBit(byte number, byte bitToClear);

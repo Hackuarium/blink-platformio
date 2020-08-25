@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <NilRTOS.h>
 
 uint16_t getQualifier();
 
