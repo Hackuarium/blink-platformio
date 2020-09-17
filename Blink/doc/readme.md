@@ -61,9 +61,9 @@ Note: You will need to log out and log back in again (or reboot) for the user gr
 
 2. Open the project from: `PIO Home -> Open Project`. If you open the project from `Visual Studio Code -> File -> Open Folder` you cann't `Build` and `Upload` your code.
 
-3. Check if pio don't have problems to find the include libraries like `Arduino.h`. I you have this problem, Go to point 1 again.
+3. Check if **pio** don't have problems to find the include libraries like `Arduino.h`. If you have this problem, Go to point 1 again.
 
-4. Pio detect the COM port of the Lilypad USB whe you plug in, so, in this point, you don't have any problems with `Build` and `Upload` your code into the Arduino.
+4. **Pio** detect the COM port of the Lilypad USB whe you plug in, so, in this point, you don't have any problems with `Build` and `Upload` your code into the Arduino.
 
 # Changes
 

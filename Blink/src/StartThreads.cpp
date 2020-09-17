@@ -2,7 +2,13 @@
 #include "Monitoring.h"
 #include "Serial.h"
 //#include "I2C.h"
-#include "WireMaster.h"
+
+#ifdef THR_WIRE_MASTER
+//16/09/2020
+//#include "WireMaster.h"
+#include"WireM.h"
+
+#endif
 //#include "hack/Serial.h"
 
 //#include <SerialSpecific.h>

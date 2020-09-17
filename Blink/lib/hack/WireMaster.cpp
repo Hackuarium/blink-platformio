@@ -1,9 +1,9 @@
 #include <NilRTOS.h>
-#include "config.h"
+//#include "config.h"
 //#include "WireMaster.h"
 #include "params.h"
 
-#ifdef THR_WIRE_MASTER
+//#ifdef THR_WIRE_MASTER
 
 #ifndef I2C_HARDWARE
 #define I2C_HARDWARE 1
@@ -237,6 +237,8 @@ void processWireCommand(char command, char *paramValue,
   }
 }
 
+//16/09/2020
+/*
 NIL_THREAD(ThreadWireMaster, arg) {
 
   nilThdSleepMilliseconds(1000);
@@ -265,6 +267,6 @@ NIL_THREAD(ThreadWireMaster, arg) {
     nilThdSleepMilliseconds(2000);
   }
 }
+*/
 
-
-#endif
+//#endif

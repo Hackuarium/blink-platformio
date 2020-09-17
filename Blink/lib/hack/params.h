@@ -4,7 +4,7 @@
 //#ifndef __AVR__
 //#include <sys/types.h> // for __time_t_defined, but avr libc lacks sys/types.h
 //#endif
-#include "config.h"
+//#include "config.h"
 
 #define INT_MAX_VALUE 32767
 #define INT_MIN_VALUE -32768
@@ -13,6 +13,9 @@
 // value that should not be taken into account
 // in case of error the parameter is set to this value
 #define ERROR_VALUE -32768
+
+//From config.h:
+#define MAX_PARAM 52
 
 #define EE_START_PARAM 0  // We save the parameter from byte 0 of EEPROM
 #define EE_LAST_PARAM \
