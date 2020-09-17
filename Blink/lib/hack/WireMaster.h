@@ -26,7 +26,9 @@ void printWireHelp(Print *output);
 void processWireCommand(char command, char *paramValue,
   Print *output);
 
-//NIL_WORKING_AREA(waThreadWireMaster, 200);
-//NIL_THREAD(ThreadWireMaster, arg);
+#ifndef THR_WIRE_M
+NIL_WORKING_AREA(waThreadWireMaster, 200);
+NIL_THREAD(ThreadWireMaster, arg);
+#endif
 
 #endif

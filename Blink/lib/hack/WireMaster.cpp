@@ -23,8 +23,10 @@ SoftWire WireM = SoftWire();
 */
 #endif
 
+//#ifndef WIRE_MASTER_HOT_PLUG
 #define WIRE_MASTER_HOT_PLUG 1  // scan for new devices preventing sleep mode
 // of I2C slaves
+//#endif
 
 #define WIRE_MAX_DEVICES 8
 
@@ -199,6 +201,7 @@ void wireUpdateList(Print* output) {
   while (currentPosition < numberI2CDevices) {
     wireRemoveDevice(currentPosition);
   }
+  
 }
 
 void printWireInfo(Print *output) {
@@ -238,7 +241,9 @@ void processWireCommand(char command, char *paramValue,
 }
 
 //16/09/2020
-/*
+#ifdef THR_WIRE_MASTER
+#ifndef THR_WIRE_M
+
 NIL_THREAD(ThreadWireMaster, arg) {
 
   nilThdSleepMilliseconds(1000);
@@ -267,6 +272,8 @@ NIL_THREAD(ThreadWireMaster, arg) {
     nilThdSleepMilliseconds(2000);
   }
 }
-*/
+
+#endif
+#endif
 
 //#endif

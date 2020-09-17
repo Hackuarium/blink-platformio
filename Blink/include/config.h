@@ -10,4 +10,7 @@
 #define THR_I2C 1
 
 // 08/24/2020
+// Enable Thread into WireMaster[.h,.cpp] into hack folder
 #define THR_WIRE_MASTER 1
+// Enable Thread into WireM[.h,.cpp] src folder
+#define THR_WIRE_M 1
