@@ -17,7 +17,7 @@ NIL_THREAD(ThreadMonitoring, arg) {
     digitalWrite(MONITORING_LED, HIGH);
     nilThdSleepMilliseconds(500);
     digitalWrite(MONITORING_LED, LOW);
-    nilThdSleepMilliseconds(100);
+    nilThdSleepMilliseconds(500);
 #endif
     wdt_reset();  // resed avoid the automatic reboot
   }

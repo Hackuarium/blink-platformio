@@ -1,6 +1,6 @@
 #include <NilRTOS.h>
 //#include <avr/wdt.h>
-#include "config.h"
+#include <config.h>
 
 #ifdef THR_MONITORING
 
