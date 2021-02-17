@@ -46,12 +46,12 @@ NIL_THREADS_TABLE_ENTRY(NULL,
 #endif
 */
 
-#ifdef THR_WIRE_MASTER 
+/*ifdef THR_WIRE_MASTER 
 NIL_THREADS_TABLE_ENTRY(NULL,
                         ThreadWireMaster,
                         NULL,
                         waThreadWireMaster,
                         sizeof(waThreadWireMaster))
-#endif
+#endif*/
 
 NIL_THREADS_TABLE_END()
