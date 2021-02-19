@@ -93,7 +93,7 @@ void printResult(char* data, Print* output) {
         }
       }
     } else if (inChar > 64 &&
-               inChar < 92) {  // an UPPERCASE character so we define the field
+               inChar < 91) {  // an UPPERCASE character so we define the field
       // we extend however the code to allow 2 letters fields !!!
       if (paramCurrent > 0) {
         paramCurrent *= 26;
@@ -197,7 +197,7 @@ NIL_THREAD(ThreadSerial, arg) {
       // get the new byte:
       char inChar = (char)Serial.read();
 
-      if (inChar == 13 || inChar == 10) {
+      if (inChar == 13 || inChar == 10) { // 0xA 0xD
         // this is a carriage return;
         if (serialBufferPosition > 0) {
           printResult(serialBuffer, &Serial);

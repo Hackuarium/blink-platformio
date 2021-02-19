@@ -1,6 +1,6 @@
 #include "config.h"
-#include "Monitoring.h"
-#include "Serial.h"
+#include "monitoring.h"
+#include "serial.h"
 //#include "I2C.h"
 
 #ifdef THR_WIRE_MASTER
